@@ -1,0 +1,203 @@
+
+
+/* Fixes dropdown menus placed on the right side */
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+
+}
+/*header css*/
+.navbar-custom{
+    color: #fff;
+    background-color: #701842;
+}
+.navbar-toggler {
+    border-color: #fff !important;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+}
+.nav-link{
+    color: white !important;
+}
+.logout-link.nav-link
+{
+    text-decoration: none;
+    color:##fff !important;
+}
+li.nav-item.dropdown {
+    padding: 0px 20px;
+}
+.navbar-brand{
+    margin:0px auto;
+}
+a.nav-link.logout-link {
+    padding-left: 20px;
+}
+
+/*LOGIN PAGE CSS*/
+button.btn.login_btn {
+    margin-top: 20px;
+}
+.user_card {
+    height: 400px;
+    width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: #f39c12;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+}
+.brand_logo_container {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -75px;
+    border-radius: 50%;
+    background: #60a3bc;
+    padding: 10px;
+    text-align: center;
+}
+.brand_logo {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.form_container {
+    margin-top: 30px;
+}
+.login_btn {
+    width: 100%;
+    background: #c0392b !important;
+    color: white !important;
+}
+.login_btn:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.login_container {
+    padding: 0 2rem;
+}
+.input-group-text {
+    background: #c0392b !important;
+    color: white !important;
+    border: 0 !important;
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input_user,
+.input_pass:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+}
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #c0392b !important;
+}
+.login-div{
+    margin-top: 100px;
+}
+
+.title-login{
+    margin: 40px auto 0 auto;
+    color: #fff;
+}
+
+/*content css*/
+.container-fluid.content {
+    padding: 70px 0px;
+}
+
+.fa-trash{
+    color:#E74C3C;
+}
+.fa-edit{
+    color:#008000;
+}
+.student button.dt-button.buttons-csv.buttons-html5.btn.btn-success{
+    margin-left:15px;
+}
+
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    width: 100%;
+}
+.body-contents{
+    background-image: url("/images/bg.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-attachment: fixed;
+}
+.img-circle{
+    border-radius: 50%;
+}
+.pull-right{
+    float: right;
+}
+.pull-left{
+    float: left;
+}
+.container{
+    padding: 20px;
+}
+.pad-d{
+    padding:10px 0px;
+}
+/*for mobile*/
+@media (max-width: 768px) {
+
+    .pull-right{
+        float: none;
+    }
+    .mobile-center{
+        text-align: center;
+        padding: 10px;
+    }
+    .pad{
+        padding:10px 0px;
+    }
+    .container{
+        padding: 5px;
+    }
+}
+@media print {
+    div#student_marklist_length.dataTables_length,
+    #student_marklist_filter.dataTables_filter,
+    div#student_marklist_info.dataTables_info,
+    .dataTables_paginate.paging_simple_numbers,
+    .hidden-print{
+        display: none !important;
+    }
+}
