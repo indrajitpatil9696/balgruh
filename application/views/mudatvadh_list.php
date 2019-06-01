@@ -23,7 +23,7 @@
         }
         ?>
 
-        <table id="student_marklist" class="table table-striped table-bordered" width="100%">
+        <table id="student_mudatlist" class="table table-striped table-bordered" width="100%">
             <thead style="alignment: center">
             <tr>
 
@@ -41,19 +41,18 @@
             </tr>
             <?php
             }
-            $cnt=0;
             foreach ($result as $key=>$val)
             {
                 ?>
                 <tr>
 
-                    <td><?php echo $cnt+1; $cnt++;?></td>
+                    <td><?php echo $val['id'];?></td>
                     <td><?php echo $val['register_no'];?></td>
                     <td><?php echo $val['fname'].' '.$val['mname'].' '.$val['lname'];?></td>
 
                     <td class="text-center">
 
-                        <a href="<?php echo site_url('marks/new/'.$val['id']);?>"><i title="मार्कलिस्ट भरा"><img src="/images/edit.png"/></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="<?php echo site_url('mudatvadh/new/'.$val['id']);?>"><i title="मुदतवाढ भरा"><img src="/images/edit.png"/></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     </td>
                 </tr>
@@ -82,7 +81,7 @@
 <script>
     $=jQuery;
     $(document).ready(function () {
-        $('#student_marklist').DataTable();
+        $('#student_mudatlist').DataTable();
     });
 </script>
 

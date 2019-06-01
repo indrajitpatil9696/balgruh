@@ -83,12 +83,13 @@
             </tr>
             <?php
             }
+            $cnt=0;
             foreach ($result as $key=>$val)
             {
                 ?>
                 <tr id="<?php echo (!empty($val['id']))?$val['id']:'';?>?>">
 
-                    <td><?php echo $val['id'];?></td>
+                    <td><?php echo $cnt+1; $cnt++;?></td>
                     <td><?php echo $val['register_no'];?></td>
                     <td><?php echo $val['fname'].' '.$val['mname'].' '.$val['lname'];?></td>
                     <?php

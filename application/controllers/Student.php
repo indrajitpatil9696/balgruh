@@ -85,6 +85,7 @@ class Student extends CI_Controller
     }
 
     public function view($id = null){
+        if($this->session->userdata('logged_in')) {
         $data['title'] = 'डॅशबोर्ड | प्रवेशित माहिती';
         $data['sid'] = $id;
         $data['result']=$this->student_model->student_list($id);
@@ -95,7 +96,10 @@ class Student extends CI_Controller
 
         $this->load->view('header', $data);
         $this->load->view('stud_view', $data);
-        $this->load->view('footer', $data);
+        $this->load->view('footer', $data);}
+        else{
+            redirect('login');
+        }
     }
     public function delete($id = null){
         if($this->student_model->delete($id)){

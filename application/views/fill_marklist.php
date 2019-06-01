@@ -33,12 +33,13 @@ $edit_mode = true;
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">प्रवेशित मार्कलिस्ट नोंद</h4><br>
-                    <?php if(!empty($sid)){echo "<h4 class='modal-title'>".$student[0]['fname'].' '.$student[0]['mname'].' '.$student[0]['lname']."</h4>"; }?>
+
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
-
+                    <?php if(!empty($sid)){echo "<h4 class='modal-title' style='text-align: center;'>".$student[0]['fname'].' '.$student[0]['mname'].' '.$student[0]['lname']."</h4>"; }?>
+                    <br>
                     <form action="<?php echo site_url('marks/save/'.$sid)?>" method="post" >
                         <div class="form-row">
                             <div class="form-group col-md-6">

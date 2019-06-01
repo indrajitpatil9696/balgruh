@@ -22,11 +22,19 @@ class Login extends CI_Controller{
         }else{
             $data['title'] = 'डॅशबोर्ड ';
         }
+        $query = $this->db->get('launch');
+        $data['launch'] = $query->result_array();
+
         $this->load->view('header',$data);
         $this->load->view('footer',$data);
 
     }
-
+public function launch(){
+        $data['status'] = 1;
+        $this->db->where('launch.status','0');
+    $this->db->update('launch',$data);
+        redirect('login');
+}
     public  function  verifylogin()
     {
         $username = $this->input->post('username');
