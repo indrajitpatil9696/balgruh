@@ -43,20 +43,6 @@ Class Student_model extends CI_Model
         return null;
     }
 
-    function student_mudatvadh_list($sid=null){
-
-        if(!empty($sid)) {
-            $this->db->order_by('student_mudatvadh.id', 'desc');
-            $this->db->where('student_mudatvadh.sid', $sid);
-            $this->db->where('student_mudatvadh.status', '1');
-            $this->db->or_where('student_mudatvadh.status', null);
-
-            $query = $this->db->get('student_mudatvadh');
-            return ($query->result_array());
-        }
-        return null;
-    }
-
     function student_group_list(){
         $query = $this->db->get('student_group');
         return($query->result_array());
@@ -185,6 +171,7 @@ Class Student_model extends CI_Model
 
         }
     }
+
     function save_csv_data($studentdata){
 
         $this->db->where('student_table.register_no', $studentdata['register_no']);
@@ -201,6 +188,56 @@ Class Student_model extends CI_Model
         }}
         else{
             return false;
+        }
+    }
+
+    function student_mudatvadh_list($sid=null){
+
+        if(!empty($sid)) {
+            $this->db->order_by('student_mudatvadh.id', 'desc');
+            $this->db->where('student_mudatvadh.sid', $sid);
+            $this->db->where('student_mudatvadh.status', '1');
+            $this->db->or_where('student_mudatvadh.status', null);
+
+            $query = $this->db->get('student_mudatvadh');
+            return ($query->result_array());
+        }
+        return null;
+    }
+
+    function student_mudatvadh_save($sid=null){
+
+        if(!empty($sid)) {
+            $studentdata = array(
+                'from' => $this->input->post('from'),
+                'sid' => $sid,
+                'to' => $this->input->post('to'),
+                'status' => 1
+            );
+
+            if ($this->db->insert('student_mudatvadh', $studentdata)) {
+                return true;
+            } else {
+
+                return false;
+            }
+        }
+    }
+
+    function student_mudatvadh_delete($mid=null){
+
+        if(!empty($sid)) {
+            $studentdata = array(
+                'status' => 0
+            );
+
+            $this->db->where('id',$mid);
+            if ($this->db->update('student_mudatvadh', $studentdata)) {
+                return true;
+            } else {
+
+                return false;
+            }
         }
     }
 }
