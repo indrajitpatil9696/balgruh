@@ -10,7 +10,7 @@ Class Donation_model extends CI_Model
     function donation_save(){
 
         $donordata = array(
-            'name' => $this->input->post('name'),
+            'dname' => $this->input->post('dname'),
             'address' => $this->input->post('address'),
             'receipt_no' => $this->input->post('receipt_no'),
             'contact_no' => $this->input->post('contact_no'),

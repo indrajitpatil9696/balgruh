@@ -12,7 +12,7 @@ $edit_mode = true;
 }
 
 ?>
-<a href="<?php echo site_url('student')?>"><img class="hidden-print" src="<?php echo base_url('images/back.png')?>" title="Back"></a>
+<a href="<?php echo site_url('student')?>"><img title="Back" class="hidden-print" src="<?php echo base_url('images/back.png')?>"></a>
 <br>
 <div class="container">
     <?php

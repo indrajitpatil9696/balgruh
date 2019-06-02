@@ -39,7 +39,7 @@ $edit_mode = true;
                 <!-- Modal body -->
                 <div class="modal-body">
 
-                    <form action="<?php echo site_url('doantion/save/'.$did)?>" method="post" >
+                    <form action="<?php echo site_url('donation/save/'.$did)?>" method="post" >
                         <div class="form-row">
                             <div class="form-group col-md-4">
                                 <label for="receipt_no">पावती क्रमांक</label>
@@ -65,8 +65,8 @@ $edit_mode = true;
                                 <input required type="text" class="form-control" name="contact_no" id="contact_no" placeholder="संपर्क क्रमांक" >
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="email"></label>
-                                <input  type="text" class="form-control" name="email" id="email" placeholder="संपर्क क्रमांक" >
+                                <label for="email">ई-मेल</label>
+                                <input  type="text" class="form-control" name="email" id="email" placeholder="ई-मेल" >
                             </div>
                         </div>
                         <div class="form-row">
@@ -133,17 +133,16 @@ $edit_mode = true;
                     <tr id="<?php echo (!empty($val['did']))?$val['did']:'';?>?>">
 
                         <td><?php echo $cnt+1; $cnt++;?></td>
-                        <td><?php echo (!empty($val['year']))?$val['year']:'';?></td>
                         <td><?php echo (!empty($val['receipt_no']))?$val['receipt_no']:'';?></td>
                         <td><?php echo (!empty($val['dname']))?$val['dname']:'';?></td>
                         <td><?php echo (!empty($val['address']))?$val['address']:'';?></td>
                         <td><?php echo (!empty($val['contact_no']))?$val['contact_no']:'';?></td>
                         <td><?php echo (!empty($val['donation']))?$val['donation']:'';?></td>
-                        <td><?php echo (!empty($val['donation_date']))?$val['donation_date']:'';?></td>
+                        <td><?php echo (!empty($val['donation_date']))?date('d-M-Y',strtotime($val['donation_date'])):'';?></td>
                         <td><?php echo (!empty($val['receiptor']))?$val['receiptor']:'';?></td>
 
                         <td class="text-center hidden-print">
-                            <a class="btn " href="<?php echo site_url('donation/view'.$val['did'])?>"><i title="डिलीट करा"><img src="/images/view.png"/></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a class="btn " href="<?php echo site_url('donation/view'.$val['did'])?>"><i title="डिलीट करा"><img src="/images/view.png"/></i></a>
                             <a class="btn remove"><i title="डिलीट करा"><img src="/images/delete.png"/></i></a>
 
 
