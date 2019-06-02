@@ -6,7 +6,8 @@
  * Time: 1:03 PM
  */
 ?>
-
+<a href="<?php echo site_url('mudatvadh')?>"><img class="hidden-print" title="Back" src="<?php echo base_url('images/back.png')?>"></a>
+<br>
 <div class="container " >
     <div class="row">
         <div class="col-md-10 col-sm-10 mobile-center"><h2><?php echo $result[0]['fname'].' '.$result[0]['lname'];?></h2></div>

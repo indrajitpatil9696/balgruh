@@ -175,6 +175,9 @@ button.btn.login_btn {
 .pad-d{
     padding:10px 0px;
 }
+#donationModel .modal-dialog{
+    max-width: 800px;
+}
 /*for mobile*/
 @media (max-width: 768px) {
 
@@ -192,6 +195,7 @@ button.btn.login_btn {
         padding: 5px;
     }
 }
+
 @media print {
     div#student_marklist_length.dataTables_length,
     #student_marklist_filter.dataTables_filter,
