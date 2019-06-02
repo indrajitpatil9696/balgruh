@@ -42,7 +42,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Navchaitanya Balgruha</a>
+    <a class="navbar-brand" href="<?php echo site_url('dashboard')?>">नवचैतन्य बालगृह</a>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
 
@@ -66,7 +66,7 @@
                     देणगी रजिस्टर
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">देणगी नोंद/बदल</a>
+                    <a class="dropdown-item" href="<?php echo site_url('donation');?>">देणगी नोंद/बदल</a>
                     <a class="dropdown-item" href="#">रिपोर्ट</a>
                 </div>
             </li>

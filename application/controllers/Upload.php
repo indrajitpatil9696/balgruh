@@ -63,13 +63,19 @@ class Upload extends CI_Controller
                                     $student_data['fname'] = $data[1];
                                     $student_data['mname'] = $data[2];
                                     $student_data['lname'] = $data[3];
-                                    $student_data['birth_date'] = $data[4];
-                                    $student_data['parents_name'] = $data[5];
-                                    $student_data['sgid'] = $data[6];
+                                    $student_data['address'] = $data[4];
+                                    $student_data['dharm_jaat'] = $data[5];
+                                    $student_data['parents_name'] = $data[6];
                                     $student_data['adm_date'] = $data[7];
-                                    $student_data['order_no'] = $data[8];
-                                    $student_data['address'] = $data[9];
-                                    $student_data['contact_nos'] = $data[10];
+                                    $student_data['birth_date'] = $data[8];
+                                    $student_data['order_no'] = $data[9];
+                                    $student_data['std'] = $data[10];
+                                    $student_data['sgid'] = $data[11];
+                                    $student_data['contact_nos'] = $data[12];
+                                    $student_data['aadhar_no'] = $data[13];
+
+
+
 
                                     if ($this->student_model->save_csv_data($student_data)) {
                                         array_push($respose['success'], $data[0]);

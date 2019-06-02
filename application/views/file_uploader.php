@@ -21,11 +21,12 @@
     }
     ?>
     <h3 style="color: darkblue"><?php echo $title;?> </h3>
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row mobile-center">
+        <div class="col-md-4 col-sm-4 pad">
             <a  href="<?php echo '/database/'.$action.'_info.csv'?>"><input type="button" class="btn btn-info" value="Download Sample CSV"></a>
         </div>
-        <div class="col-md-4">
+
+        <div class="col-md-4 col-sm-4 pad">
             <form action="<?php echo site_url('upload/index/').$action?>" method="post" enctype="multipart/form-data">
                 <div class="input-group">
 
@@ -38,7 +39,8 @@
 
 
         </div>
-        <div class="col-md-4">
+
+        <div class="col-md-4 col-sm-4">
             <div class="input-group">
                 <input type="submit" class="btn btn-primary" name="process" value="Process..!">
             </div>

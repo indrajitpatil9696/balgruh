@@ -12,7 +12,11 @@ $edit_mode = true;
 }
 
 ?>
+<a href="<?php echo site_url('marks')?>"><img title="Back" class="hidden-print" src="<?php echo base_url('images/back.png')?>"></a>
+<br>
 <div class="container">
+
+
     <?php
     if($this->session->flashdata('message')){
         echo $this->session->flashdata('message');
@@ -103,7 +107,7 @@ $edit_mode = true;
                 <?php
                 if(count($result)==0){?>
                     <tr>
-                        <td colspan="3"><?php echo 'no_record_found';?></td>
+                        <td colspan="3"><?php echo 'No record Found';?></td>
                     </tr>
                     <?php
                 }

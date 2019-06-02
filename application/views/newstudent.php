@@ -12,6 +12,8 @@ $edit_mode = true;
 }
 
 ?>
+<a href="<?php echo site_url('student')?>"><img class="hidden-print" src="<?php echo base_url('images/back.png')?>" title="Back"></a>
+<br>
 <div class="container">
     <?php
     if($this->session->flashdata('message')){

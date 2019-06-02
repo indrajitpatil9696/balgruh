@@ -12,6 +12,8 @@ $edit_mode = true;
 }
 
 ?>
+<a href="<?php echo site_url('mudatvadh')?>"><img class="hidden-print" title="Back" src="<?php echo base_url('images/back.png')?>"></a>
+<br>
 <div class="container">
     <?php
     if($this->session->flashdata('message')){
