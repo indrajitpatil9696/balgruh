@@ -19,9 +19,15 @@ class Dashboard extends CI_Controller
     }
     public function index()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $data['csrf'] = $csrf;
         if($this->session->userdata('logged_in')) {
             $data['title'] = 'डॅशबोर्ड';
             $data['user_name']=$this->session->userdata('logged_in');
+            $data['controller']='dashboard_c';
             $this->load->view('header', $data);
             $this->load->view('dashboard', $data);
             $this->load->view('footer', $data);

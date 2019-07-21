@@ -17,11 +17,16 @@ class Login extends CI_Controller{
     }
     public function index()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
         if(!$this->session->userdata('logged_in')) {
             $data['title'] = 'नवचैतन्य गेटवे';
         }else{
             $data['title'] = 'डॅशबोर्ड ';
         }
+        $data['csrf'] = $csrf;
         $query = $this->db->get('launch');
         $data['launch'] = $query->result_array();
 

@@ -21,6 +21,11 @@ class Marks extends CI_Controller
     }
 
     function index(){
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $data['csrf'] = $csrf;
         if($this->session->userdata('logged_in')) {
             $data['title'] = 'प्रवेशित मार्कलिस्ट';
             $data['user_name']=$this->session->userdata('logged_in');
@@ -35,6 +40,11 @@ class Marks extends CI_Controller
     }
 
     function new($sid = null){
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $data['csrf'] = $csrf;
         if(!empty($sid)){
             if($this->session->userdata('logged_in')) {
                 $data['title'] = 'प्रवेशित मार्कलिस्ट नोंद';

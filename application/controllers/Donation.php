@@ -15,11 +15,18 @@ class Donation extends CI_Controller
         $this->load->database();
         $this->load->library('session');
         $this->load->helper('url');
+        $this->load->helper('sms_helper');
         $this->load->model("donation_model");
 
     }
     public function index()
     {
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $data['csrf'] = $csrf;
+
         if($this->session->userdata('logged_in')) {
             $data['title'] = 'देणगी माहिती';
             $data['did'] = null;
@@ -49,7 +56,31 @@ class Donation extends CI_Controller
         }
         else {
             if ($this->donation_model->donation_save()) {
-                $this->session->set_flashdata('message', "<div class='alert alert-success'>माहिती यशस्वीरित्या अपडेट  झाली...!</div>");
+                $flash_message="<div class='alert alert-success'>माहिती सेव झाली...!</div>";
+                $reciever = $this->input->post('contact_no');
+                $donor_name = $this->input->post('dname');
+                if($this->input->post('sendsms')==1) {
+                    $this->db->where('sms_table.status',1);
+                    $this->db->where('sms_table.type',1);
+                    $query = $this->db->get('sms_table');
+                    $sms = $query->result_array();
+                    if(count($sms)>0) {
+                        $message = $donor_name . ' ' .$sms[0]['sms_content'];
+                    }
+                }
+                $messageFounders = 'दि.'.date('d/M/Y',strtotime($this->input->post('donation_date'))).' देणगीदार :'.$donor_name .' देणगी :'.$this->input->post('donation');
+                $recieverFounder='7038662573';
+                $response =sendSms($message,$reciever);
+                sendSms($messageFounders,$recieverFounder);
+                if(!empty($response)){
+                    if($response['return']==true){
+                        $flash_message = $flash_message ."<div class='alert alert-success'>sms सेंड झाला.</div>";
+                    }
+                    else{
+                        $flash_message = $flash_message ."<div class='alert alert-danger'>sms  सेंड करताना व्यत्यय ".$response['message']."</div>";
+                    }
+                }
+                $this->session->set_flashdata('message', $flash_message);
 
             } else {
                 $this->session->set_flashdata('message', "<div class='alert alert-danger'>सेव करताना व्यत्यय </div>");
@@ -61,8 +92,13 @@ class Donation extends CI_Controller
     }
 
     public function view($did = null){
+        $csrf = array(
+            'name' => $this->security->get_csrf_token_name(),
+            'hash' => $this->security->get_csrf_hash()
+        );
+        $data['csrf'] = $csrf;
         if($this->session->userdata('logged_in')) {
-        $data['title'] = 'डॅशबोर्ड | प्रवेशित माहिती';
+        $data['title'] = 'डॅशबोर्ड | देणगी माहिती';
         $data['did'] = $did;
         $data['result']=$this->donation_model->donation_list($did);
         $data['user_name']=$this->session->userdata('logged_in');
@@ -75,7 +111,7 @@ class Donation extends CI_Controller
         }
     }
     public function delete($id = null){
-        if($this->donation_model->delete($id)){
+        if($this->donation_model->donation_delete($id)){
             $this->session->set_flashdata('message', "<div class='alert alert-danger'>माहिती यशस्वीरित्या डिलीट झाली...!</div>");
             redirect('donation');
         }
@@ -83,6 +119,22 @@ class Donation extends CI_Controller
             $this->session->set_flashdata('message', "<div class='alert alert-danger'>सेव करताना व्यत्यय </div>");
             redirect('donation');
         }
+    }
+    public function report(){
+        if($this->session->userdata('logged_in')) {
+            $data['title'] = 'देणगी रिपोर्ट';
+            $data['report']='donation';
+            $this->load->view('header', $data);
+            $this->load->view('reporter', $data);
+            $this->load->view('footer', $data);
+        }
+        else{
+            redirect('login');
+        }
+
+    }
+    public function export(){
+
     }
 
 }

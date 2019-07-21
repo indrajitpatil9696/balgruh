@@ -6,7 +6,7 @@
  * Time: 1:03 PM
  */
 ?>
-<a href="<?php echo site_url('mudatvadh')?>"><img class="hidden-print" title="Back" src="<?php echo base_url('images/back.png')?>"></a>
+<a href="<?php echo site_url('student')?>"><img class="hidden-print" title="Back" src="<?php echo base_url('images/back.png')?>"></a>
 <br>
 <div class="container " >
     <div class="row">

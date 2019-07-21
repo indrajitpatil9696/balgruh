@@ -33,7 +33,7 @@ Class Donation_model extends CI_Model
 
     }
     function donation_list($did =null){
-        if(!empty($sid)) {
+        if(!empty($did)) {
             $this->db->order_by('donor_list.donation_date', 'desc');
             $this->db->where('donor_list.did', $did);
         }
@@ -48,7 +48,7 @@ Class Donation_model extends CI_Model
     function donation_delete($did = null){
         if (!empty($did)) {
             $data = array('status'=> 0);
-            $this->db->where('donor_list.id', $did);
+            $this->db->where('donor_list.did', $did);
             if($this->db->update('donor_list',$data)){
                 return true;}
             else{return false;}
