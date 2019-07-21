@@ -45,6 +45,7 @@ $edit_mode = true;
                     <?php if(!empty($sid)){echo "<h4 class='modal-title' style='text-align: center;'>".$student[0]['fname'].' '.$student[0]['mname'].' '.$student[0]['lname']."</h4>"; }?>
                     <br>
                     <form action="<?php echo site_url('marks/save/'.$sid)?>" method="post" >
+                        <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="year">शैक्षणिक वर्ष</label>
@@ -175,6 +176,7 @@ $edit_mode = true;
             $.ajax({
                 url: '/index.php/marks/delete/'+id,
                 type: 'DELETE',
+                data: {'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},
                 error: function() {
                     alert('Something is wrong');
                 },

@@ -21,7 +21,8 @@ $edit_mode = true;
     }
     ?>
     <form action="<?php echo (isset($result[0]['id']))?site_url('student/save/'.$sid):site_url('student/save/');?>" method="post" enctype="multipart/form-data">
-    <div class="form-row">
+        <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>">
+        <div class="form-row">
         <div class="form-group col-md-1">
             <label for="register_no">रजि. नं.</label>
             <input type="text" class="form-control" name="register_no" id="register_no" placeholder="रजि. नं." value="<?php echo (!empty($result[0]['register_no']))?$result[0]['register_no']:'';?>">

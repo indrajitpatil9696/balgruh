@@ -40,19 +40,20 @@ $edit_mode = true;
                 <div class="modal-body">
 
                     <form action="<?php echo site_url('donation/save/'.$did)?>" method="post" >
+                        <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>">
                         <div class="form-row">
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-2">
                                 <label for="receipt_no">पावती क्रमांक</label>
-                                <input type="text" class="form-control" name="receipt_no" id="receipt_no" placeholder="पावती क्रमांक" value="<?php echo (!empty($result[0]['register_no']))?$result[0]['register_no']:'';?>">
+                                <input required type="text" class="form-control" name="receipt_no" id="receipt_no" placeholder="पावती क्रमांक" value="<?php echo (!empty($result[0]['register_no']))?$result[0]['register_no']:'';?>">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label for="donation_date">देणगी तारीख</label>
                                 <input required type="date" class="form-control" name="donation_date" id="donation_date" placeholder="देणगी तारीख" >
                             </div>
 
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-7">
                                 <label for="dname">देणगीदाराचे नाव</label>
-                                <input required type="text" class="form-control" name="dname" id="dname" placeholder="देणगीदाराचे नाव" />
+                                <input required type="text" class="form-control" name="dname" id="dname" placeholder="देणगीदाराचे नाव" value="मा. श्री./सौ. " />
                             </div>
                         </div>
                         <div class="form-row">
@@ -60,11 +61,18 @@ $edit_mode = true;
                                 <label for="address">पत्ता</label>
                                 <input  type="text" class="form-control" name="address" id="address" placeholder="पत्ता" >
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-3">
                                 <label for="contact_no">संपर्क क्रमांक</label>
                                 <input required type="text" class="form-control" name="contact_no" id="contact_no" placeholder="संपर्क क्रमांक" >
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-2">
+                                <label for="sendsms">Send SMS</label>
+                                <select class="form-control" name="sendsms" id="sendsms">
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
                                 <label for="email">ई-मेल</label>
                                 <input  type="text" class="form-control" name="email" id="email" placeholder="ई-मेल" >
                             </div>
@@ -83,7 +91,9 @@ $edit_mode = true;
                                 <input required type="text" class="form-control" name="receiptor" id="receiptor" placeholder="पावती करणारा" >
                             </div>
                         </div>
+                        <div style="text-align: right">
                         <button type="submit" class="btn btn-secondary" >सेव करा </button>
+                        </div>
                     </form>
                 </div>
 
@@ -130,7 +140,7 @@ $edit_mode = true;
                 foreach ($result as $key=>$val)
                 {
                     ?>
-                    <tr id="<?php echo (!empty($val['did']))?$val['did']:'';?>?>">
+                    <tr id="<?php echo (!empty($val['did']))?$val['did']:'';?>">
 
                         <td><?php echo $cnt+1; $cnt++;?></td>
                         <td><?php echo (!empty($val['receipt_no']))?$val['receipt_no']:'';?></td>
@@ -142,7 +152,7 @@ $edit_mode = true;
                         <td><?php echo (!empty($val['receiptor']))?$val['receiptor']:'';?></td>
 
                         <td class="text-center hidden-print">
-                            <a class="btn " href="<?php echo site_url('donation/view'.$val['did'])?>"><i title="डिलीट करा"><img src="/images/view.png"/></i></a>
+                            <a class="btn " href="<?php echo site_url('donation/view/'.$val['did'])?>"><i title="View"><img src="/images/view.png"/></i></a>
                             <a class="btn remove"><i title="डिलीट करा"><img src="/images/delete.png"/></i></a>
 
 
@@ -187,12 +197,13 @@ $edit_mode = true;
         var id = $(this).parents("tr").attr("id");
 
 
-        if(confirm('तुम्ही मार्कलिस्ट रेकॉर्ड डिलीट करत आहात.\n' +
+        if(confirm('तुम्ही देणगी रेकॉर्ड डिलीट करत आहात.\n' +
             'डिलीट करण्यासाठी ok बटन प्रेस करा'))
         {
             $.ajax({
                 url: '/index.php/donation/delete/'+id,
                 type: 'DELETE',
+                data: {'<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'},
                 error: function() {
                     alert('Something is wrong');
                 },

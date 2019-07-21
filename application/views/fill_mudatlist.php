@@ -41,6 +41,7 @@ $edit_mode = true;
                 <div class="modal-body">
                     <?php if(!empty($sid)){echo "<h4 class='modal-title' style='text-align: center'>".$student[0]['fname'].' '.$student[0]['mname'].' '.$student[0]['lname']."</h4>"; }?>
                     <form action="<?php echo site_url('mudatvadh/save/'.$sid)?>" method="post" >
+                        <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="from">मुदतवाढ पासून</label>
@@ -146,6 +147,7 @@ $edit_mode = true;
             $.ajax({
                 url: '/index.php/mudatvadh/delete/'+id,
                 type: 'DELETE',
+                data:
                 error: function() {
                     alert('Something is wrong');
                 },

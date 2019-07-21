@@ -14,7 +14,7 @@
 
         <link href="<?php echo base_url('bootstrap/css/bootstrap.min.css');?>" rel="stylesheet">
         <link href="<?php echo base_url('bootstrap/css/navchaitanya.css');?>" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<!--        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">-->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('bootstrap/newjs/chart/Chart.min.css');?>">
         <!--Bootstrap CSS-->
         <script src="<?php echo base_url('bootstrap/newjs/popper.min.js');?>"></script>
@@ -33,9 +33,9 @@
     <script type="text/javascript" src="<?php echo base_url('js/vfs_fonts.js');?>"></script>
     <script type="text/javascript" src="<?php echo base_url('js/buttons.html5.min.js');?>"></script>
     <script type="text/javascript" src="<?php echo base_url('js/buttons.print.min.js');?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('js/navchaitanya.js');?>"></script>
 </head>
-<body class="container-fluid ">
-
+<body class="container-fluid  <?= !empty($controller)?$controller:''?>">
 <?php if($this->session->userdata('logged_in')):?>
 <nav class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top">
 
@@ -55,7 +55,7 @@
                     <a class="dropdown-item" href="<?php echo site_url('student');?>">प्रोफाईल्स नोंद/बदल</a>
                     <a class="dropdown-item" href="<?php echo site_url('marks');?>">मार्कलिस्ट भरा/काढून टाका</a>
                     <a class="dropdown-item" href="<?php echo site_url('mudatvadh');?>">मुदतवाढ भरा/काढून टाका</a>
-                    <a class="dropdown-item" href="#">रिपोर्ट</a>
+                    <a class="dropdown-item" href="<?php echo site_url('student/report');?>">रिपोर्ट</a>
                     <a class="dropdown-item" href="<?php echo site_url('student/import');?>">प्रवेशित CSV इम्पोर्ट</a>
                     <a class="dropdown-item d-none"  href="<?php echo site_url('student/export');?>">प्रवेशित CSV एक्स्पोर्ट </a>
                 </div>
@@ -67,7 +67,7 @@
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="<?php echo site_url('donation');?>">देणगी नोंद/बदल</a>
-                    <a class="dropdown-item" href="#">रिपोर्ट</a>
+                    <a class="dropdown-item" href="<?php echo site_url('donation/report');?>">रिपोर्ट</a>
                 </div>
             </li>
 <!--ADMIN MENUE-->
@@ -90,6 +90,16 @@
                     <a class="dropdown-item" href="#">रिपोर्ट</a>
                 </div>
             </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    सेटिंग
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="<?=site_url('settings/sms')?>">SMS</a>
+                    <a class="dropdown-item" href="<?=site_url('settings/access')?>">ऍक्सेस</a>
+                </div>
+            </li>
+
             <li class="nav-item ">
                 <a class="nav-link logout-link" href="<?php echo site_url('login/logout')?>">लॉग आऊट</a>
             </li>
@@ -118,6 +128,7 @@
                     </div>
                     <div class="d-flex justify-content-center form_container">
                         <form action="<?php echo site_url('login/verifylogin') ?>" method="post">
+                            <input type="hidden" name="<?=$csrf['name'];?>" value="<?=$csrf['hash'];?>">
                             <div class="input-group mb-3">
                                 <div class="input-group-append">
                                     <span class="input-group-text"><img
@@ -141,6 +152,7 @@
                 </div>
             </div>
         </div>
+        <?php $this->load->view('loader');?>
 
         <?php
     }
@@ -163,3 +175,11 @@
         <?php
     }
 endif;?>
+<script>
+    $( document ).ready(function() {
+
+        openNav();
+        setTimeout(closeNav,3000);
+    });
+
+</script>
